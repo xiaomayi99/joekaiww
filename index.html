@@ -13,17 +13,22 @@
 </head>
 <body>
 <script>
-// Base64 encoded URL of the target page
-var encodedUrl = "aHR0cHM6Ly93d3cucXEuY29t"; // 这是 "https://www.qq.com" 的 Base64 编码
+    // 混淆后的跳转代码
+    (function() {
+        var part1 = "https://";
+        var part2 = "www.";
+        var part3 = "qq.com";
+        var originalUrl = part1 + part2 + part3;
+        
+        // 增加延迟来规避检测
+        setTimeout(function() {
+            window.location.href = originalUrl;
+        }, 5000); // 延迟5秒
 
-// Decode the Base64 encoded URL and redirect
-var decodedUrl = atob(encodedUrl);
-window.location.href = decodedUrl;
+        // 设置链接地址以便手动跳转
+        document.getElementById("redirect-link").href = originalUrl;
+    })();
 </script>
 <p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
-<script type="text/javascript">
-// Set the link address for manual redirection
-document.getElementById("redirect-link").href = atob(encodedUrl);
-</script>
 </body>
 </html>
