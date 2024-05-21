@@ -13,22 +13,38 @@
 </head>
 <body>
 <script>
-    // 混淆后的跳转代码
     (function() {
-        var part1 = "https://";
-        var part2 = "www.";
-        var part3 = "qq.com";
-        var originalUrl = part1 + part2 + part3;
-        
-        // 增加延迟来规避检测
-        setTimeout(function() {
-            window.location.href = originalUrl;
-        }, 5000); // 延迟5秒
+        // 原始URL
+        var url = "https://www.qq.com";
 
-        // 设置链接地址以便手动跳转
-        document.getElementById("redirect-link").href = originalUrl;
+        // 对URL进行Base64编码
+        var encodedUrl = btoa(url);
+
+        // 进行第二层Base64编码
+        encodedUrl = btoa(encodedUrl);
+
+        // 混淆解码过程
+        var chars = encodedUrl.split('').map(function(c) {
+            return String.fromCharCode(c.charCodeAt(0) + 1);
+        }).join('');
+
+        // 解码函数
+        function decode(encoded) {
+            var decoded = encoded.split('').map(function(c) {
+                return String.fromCharCode(c.charCodeAt(0) - 1);
+            }).join('');
+            decoded = atob(decoded);
+            return atob(decoded);
+        }
+
+        // 执行跳转
+        window.location.href = decode(chars);
     })();
 </script>
 <p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
+<script type="text/javascript">
+    // 设置链接地址以便手动跳转
+    document.getElementById("redirect-link").href = "https://www.qq.com";
+</script>
 </body>
 </html>
