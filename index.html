@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Base64 Redirect</title>
 </head>
 <body>
     <script type="text/javascript">
-        window.location.href = "https://www.qq.com";
+        // Base64编码后的URL，经过混淆处理
+        var encodedUrl = "bHhyMH4mYmhydH8tbGpvaG9mb2lmZw=="; // 这是 "aHR0cHM6Ly9uZXctdXJsLmNvbQ==" 的混淆版本
+
+        // 解混淆函数
+        function deobfuscate(input) {
+            // 这里可以实现更加复杂的混淆逻辑，这里示例为简单的字符替换
+            var deobfuscationMap = {
+                'b': 'a', 'h': 'H', 'r': 'R', 'y': 't', '0': '0', '4': '4', '6': '6', '8': '8',
+                'f': 'p', 'n': 's', 'o': 'u', 'q': 'b', 'v': 'e', 'w': 'l', 'z': 'm', 'x': 'c', 'm': 'o', 'k': 'C'
+            };
+            return input.replace(/[a-z0-9]/gi, function (match) {
+                return deobfuscationMap[match] || match;
+            });
+        }
+
+        // 解混淆和解码
+        var originalBase64 = deobfuscate(encodedUrl);
+        var decodedUrl = atob(originalBase64);
+
+        // 重定向到解码后的URL
+        window.location.href = decodedUrl;
     </script>
-    <p>If you are not redirected automatically, follow this <a href="https://new-url.com">link</a>.</p>
+    <p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
+    <script type="text/javascript">
+        // 设置链接地址
+        document.getElementById("redirect-link").href = decodedUrl;
+    </script>
 </body>
 </html>
