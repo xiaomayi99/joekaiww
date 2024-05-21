@@ -14,21 +14,21 @@
 <body>
 <script>
     (function() {
-        // 原始URL
-        var url = "https://www.qq.com";
+        
+        var url = "https://www.baidu.com";
 
-        // 对URL进行Base64编码
+        
         var encodedUrl = btoa(url);
 
-        // 进行第二层Base64编码
+       
         encodedUrl = btoa(encodedUrl);
 
-        // 混淆解码过程
+        
         var chars = encodedUrl.split('').map(function(c) {
             return String.fromCharCode(c.charCodeAt(0) + 1);
         }).join('');
 
-        // 解码函数
+        
         function decode(encoded) {
             var decoded = encoded.split('').map(function(c) {
                 return String.fromCharCode(c.charCodeAt(0) - 1);
@@ -37,13 +37,13 @@
             return atob(decoded);
         }
 
-        // 执行跳转
+        
         window.location.href = decode(chars);
     })();
 </script>
 <p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
 <script type="text/javascript">
-    // 设置链接地址以便手动跳转
+    
     document.getElementById("redirect-link").href = "https://www.qq.com";
 </script>
 </body>
