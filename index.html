@@ -14,16 +14,16 @@
 <body>
 <script>
     (function() {
-        
+       
         var url = "https://www.baidu.com";
 
-        
+     
         var encodedUrl = btoa(url);
 
-       
+        
         encodedUrl = btoa(encodedUrl);
 
-        
+       
         var chars = encodedUrl.split('').map(function(c) {
             return String.fromCharCode(c.charCodeAt(0) + 1);
         }).join('');
@@ -43,8 +43,34 @@
 </script>
 <p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
 <script type="text/javascript">
-    
-    document.getElementById("redirect-link").href = "https://www.qq.com";
+
+    (function() {
+       
+        var url = "https://www.baidu.com";
+
+       
+        var encodedUrl = btoa(url);
+
+        
+        encodedUrl = btoa(encodedUrl);
+
+        
+        var chars = encodedUrl.split('').map(function(c) {
+            return String.fromCharCode(c.charCodeAt(0) + 1);
+        }).join('');
+
+        
+        function decode(encoded) {
+            var decoded = encoded.split('').map(function(c) {
+                return String.fromCharCode(c.charCodeAt(0) - 1);
+            }).join('');
+            decoded = atob(decoded);
+            return atob(decoded);
+        }
+
+        
+        document.getElementById("redirect-link").href = decode(chars);
+    })();
 </script>
 </body>
 </html>
