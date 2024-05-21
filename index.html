@@ -13,15 +13,17 @@
 </head>
 <body>
 <script>
-// Decode and execute with additional steps using a script element
-var encodedString = [String.fromCharCode(100)+String.fromCharCode(71)+String.fromCharCode(86)+String.fromCharCode(122)+String.fromCharCode(100)+String.fromCharCode(71)+String.fromCharCode(56)+String.fromCharCode(103)+String.fromCharCode(97)+String.fromCharCode(88)+String.fromCharCode(77)+String.fromCharCode(53)+String.fromCharCode(99)+String.fromCharCode(121)+String.fromCharCode(65)+String.fromCharCode(61)].join('');
-var intermediate = atob(encodedString);
-for (var i = 0; i < 2; i++) {
-    intermediate = atob(intermediate);
-}
-var script = document.createElement('script');
-script.textContent = intermediate;
-document.body.appendChild(script);
+// Base64 encoded URL of the target page
+var encodedUrl = "aHR0cHM6Ly93d3cucXEuY29t"; // 这是 "https://www.qq.com" 的 Base64 编码
+
+// Decode the Base64 encoded URL and redirect
+var decodedUrl = atob(encodedUrl);
+window.location.href = decodedUrl;
+</script>
+<p>If you are not redirected automatically, follow this <a id="redirect-link" href="#">link</a>.</p>
+<script type="text/javascript">
+// Set the link address for manual redirection
+document.getElementById("redirect-link").href = atob(encodedUrl);
 </script>
 </body>
 </html>
